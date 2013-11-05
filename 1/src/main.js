@@ -1,3 +1,4 @@
 APP.init({
-	quizUrl: 'questions.json'
+	quizUrl: 'questions.json',
+	triggerEl: 'body'
 });

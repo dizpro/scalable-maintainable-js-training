@@ -9,7 +9,8 @@
 (function ($) {
 
   $.resShow = function() {
-    var result = '<p class="result">Your result is <b>' + arguments[0] + '</b></p>';
+    //console.log(arguments, arguments[0].total);
+    var result = '<p class="result">Your result is <b>' + arguments[0].total + '</b></p>';
 
     $('body').html(result);
   }

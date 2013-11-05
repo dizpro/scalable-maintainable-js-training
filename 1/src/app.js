@@ -3,11 +3,11 @@ var APP = APP || {};
 
 
 APP.init = function(option) {
-	$(document).on('quiz.done', function() {
-		$.resShow($.quiz.options.totalScore)
+	$(option.triggerEl).on('quiz.done', function(e, data) {
+		$.resShow({total: data.total});
 	});
 
 	$.getJSON( option.quizUrl, function( data ) {
-		$.quiz.start(data);
+		$(option.triggerEl).quiz({ questions: data });
 	});
 }
