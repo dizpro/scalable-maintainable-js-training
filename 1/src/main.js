@@ -1,1 +1,3 @@
-APP.init();
+APP.init({
+	quizUrl: 'questions.json'
+});

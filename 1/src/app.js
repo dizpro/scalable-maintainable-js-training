@@ -2,15 +2,12 @@ var APP = APP || {};
 
 
 
-APP.init = function() {
+APP.init = function(option) {
 	$(document).on('quiz.done', function() {
-		//$.res.show();
-		console.log('triggered', $.quiz.options.totalScore);
 		$.resShow($.quiz.options.totalScore)
 	});
 
-	$.getJSON( "questions.json", function( data ) {
-		console.log(data);
+	$.getJSON( option.quizUrl, function( data ) {
 		$.quiz.start(data);
 	});
 }

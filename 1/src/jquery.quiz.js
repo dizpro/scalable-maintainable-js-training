@@ -15,15 +15,17 @@
 
   $.quiz.options = {
     currentQuestion: 0,
-    totalScore: 0,
+    totalScore: 0
   };
 
   // Static method default options.
   $.quiz.start = function(items) {
-      $.quiz.questions = items || [];
+     var obj = this.options;
+      obj.questions = items || [];
 
       $(document).on('click.quiz', 'li.quiz-answers', function() {
-        $.quiz.options.totalScore += $(this).find('input:radio').val() - 0;
+        //console.log(obj);
+        obj.totalScore += $(this).find('input:radio').val() - 0;
 
         if ($.quiz.next() === false) {
           $(document).trigger('quiz.done');
@@ -35,12 +37,12 @@
   };
 
   $.quiz.next = function() {
-    var quizOptions = $.quiz.options;
+    var obj = $.quiz.options;
 
-    if (quizOptions.currentQuestion >= $.quiz.questions.length) {
+    if (obj.currentQuestion >= obj.questions.length) {
       return false;
     }
-    var item = $.quiz.questions[quizOptions.currentQuestion++];
+    var item = obj.questions[obj.currentQuestion++];
     var answers = [];
 
     for (var i=0, l=item.answers.length; i < l; i++ ) {
@@ -51,11 +53,7 @@
 
     var ul = $('<ul>').append(answers);
 
-    var htmlItem = $('<div>').attr({
-      'class': 'quiz-items'
-    }).html("<h3>"+item.question+"</h3>").append(ul);
-
-
+    var htmlItem = $('<div>').attr({'class': 'quiz-items'}).html("<h3>"+item.question+"</h3>").append(ul);
 
     $('body').html(htmlItem);
     return true;
